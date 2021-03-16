@@ -13,8 +13,8 @@ public class FollowPlayer : MonoBehaviour
     public Transform player;
     public Vector3 offset;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, player.position+offset, .1f);
+        transform.position = Vector3.Lerp(transform.position, player.position+offset, .01f * Vector3.Distance(transform.position,player.position));
     }
 }
