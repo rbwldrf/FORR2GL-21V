@@ -40,18 +40,19 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0)) * (transform.eulerAngles.z > 180?-1:1)));
 
+        Vector3 p1 = transform.position - transform.right * mesh.bounds.extents.x * Mathf.Sin(Mathf.Clamp(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0))) * Mathf.Deg2Rad, -.7854f, .7854f)) + Vector3.up * .33f;
+        Vector3 p2 = transform.position - transform.right * mesh.bounds.extents.x * Mathf.Sin(Mathf.Clamp(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0))) * Mathf.Deg2Rad, -.7854f, .7854f)) - Vector3.up * .33f;
 
-        Debug.DrawLine(
-            transform.position - transform.right * mesh.bounds.extents.x * Mathf.Sin(Mathf.Clamp(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0)))*Mathf.Deg2Rad,-.7854f,.7854f)) + Vector3.up * .33f, 
-            transform.position - transform.right * mesh.bounds.extents.x * Mathf.Sin(Mathf.Clamp(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0)))*Mathf.Deg2Rad,-.7854f,.7854f)) - Vector3.up * .33f);
 
-        bool colAtNadir = Physics.Linecast(transform.position + transform.up * .05f, transform.position - transform.up * .05f, out ray, lm);
+        Debug.DrawLine(p1,p2);
+
+        bool colAtNadir = Physics.Linecast(p1,p2, out ray, lm);
         onGround = colAtNadir && ray.collider.tag == "ground";
         speed = Mathf.Lerp(Mathf.Clamp(speed+(onGround?move.y:0),-maxSpeed,maxSpeed),0,.01f);
 
         Debug.Log( "Vehicle is " + (onGround ? "" : "NOT ") + "on ground.");
 
-        yaw = Mathf.Lerp(move.x * speed * (onGround ? 8f : 0),0, .1f+Mathf.Abs(transform.eulerAngles.z)/45);
+        yaw = Mathf.Lerp(move.x * speed * (onGround ? 6f : 0),0, .75f+Mathf.Abs((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0)))/22.5f);
 
         Debug.Log(yaw);
 
