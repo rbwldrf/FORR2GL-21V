@@ -15,6 +15,7 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //uppfærir staðsetningu með .
         transform.position = Vector3.Lerp(transform.position, player.position+offset, .01f * Vector3.Distance(transform.position,player.position));
     }
 }

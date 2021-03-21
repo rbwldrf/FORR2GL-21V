@@ -40,29 +40,26 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0)) * (transform.eulerAngles.z > 180?-1:1)));
 
-        Vector3 p1 = transform.position - transform.right * mesh.bounds.extents.x * Mathf.Sin(Mathf.Clamp(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0))) * Mathf.Deg2Rad, -.7854f, .7854f)) + Vector3.up * .33f;
-        Vector3 p2 = transform.position - transform.right * mesh.bounds.extents.x * Mathf.Sin(Mathf.Clamp(((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0))) * Mathf.Deg2Rad, -.7854f, .7854f)) - Vector3.up * .33f;
+        float nomodAngle = (transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0));
+        Vector3 p = transform.position - transform.right * mesh.bounds.extents.x * Mathf.Sin(Mathf.Clamp((nomodAngle) * Mathf.Deg2Rad, -.7854f, .7854f)) ;
 
-
-        Debug.DrawLine(p1,p2);
-
-        bool colAtNadir = Physics.Linecast(p1,p2, out ray, lm);
-        onGround = colAtNadir && ray.collider.tag == "ground";
+        //Debug.DrawLine(p1,p2);
+                
+        //Hraðar á sér einungis ef ákveðin hlið bíls snertir yfirborð.
+        //Linear interpolation notað til að gefa einfalda hröðun.
+        onGround = Physics.Linecast(p + Vector3.up * .33f, p - Vector3.up * .33f, out ray, lm) && ray.collider.tag == "ground";
         speed = Mathf.Lerp(Mathf.Clamp(speed+(onGround?move.y:0),-maxSpeed,maxSpeed),0,.01f);
 
-        Debug.Log( "Vehicle is " + (onGround ? "" : "NOT ") + "on ground.");
-
-        yaw = Mathf.Lerp(move.x * speed * (onGround ? 6f : 0),0, .75f+Mathf.Abs((transform.eulerAngles.z - (transform.eulerAngles.z > 180 ? 360 : 0)))/22.5f);
-
-        Debug.Log(yaw);
+        //Debug.Log( "Vehicle is " + (onGround ? "" : "NOT ") + "on ground.");
+        //yaw = Mathf.Lerp(move.x * speed * (onGround ? 6f : 0),0, .75f+Mathf.Abs(nomodAngle)/22.5f); Debug.Log(yaw);
 
         //Færa bifreið áfram.
-        transform.Translate(((Vector3.forward * speed) / (1 + Mathf.Abs(yaw*.005f))) * Time.fixedDeltaTime);
-        //Snýr bifreið til hliðar.
+        transform.Translate(((Vector3.forward * speed) /* / (1 + Mathf.Abs(yaw*.005f)) */)  * Time.fixedDeltaTime);
+        //Snýr bifreið til hliðar byggt á hraða bíls, með stillt hámark á snúning.
         transform.Rotate(Vector3.up * move.x * Mathf.Clamp(speed,-turnSpeed,turnSpeed) * (onGround?1:.2f));
 
 
-        GetComponent<Rigidbody>().AddRelativeTorque(Vector3.forward * yaw,ForceMode.Acceleration); 
+        //GetComponent<Rigidbody>().AddRelativeTorque(Vector3.forward * yaw,ForceMode.Acceleration); 
         
         if (a["respawn"].triggered || transform.position.y < -100) { Respawn(); }
 
