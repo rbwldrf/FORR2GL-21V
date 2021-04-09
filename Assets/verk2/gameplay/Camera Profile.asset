@@ -76,18 +76,18 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   quality:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   spectralLut:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {fileID: 0}
   intensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
     min: 0
     max: 1
   m_MaxSamples:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 6
     min: 3
     max: 24
@@ -107,6 +107,7 @@ MonoBehaviour:
   - {fileID: 8897671129044193395}
   - {fileID: -2609929864500547265}
   - {fileID: 3528125810507380214}
+  - {fileID: -1465853828921677591}
 --- !u!114 &3528125810507380214
 MonoBehaviour:
   m_ObjectHideFlags: 3

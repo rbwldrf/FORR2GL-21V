@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -22,11 +22,14 @@ public class Player : MonoBehaviour
         SceneManager.LoadSceneAsync("level00", LoadSceneMode.Additive);
     }
 
+    public Text treasuryIndicator;
+
     // Update is called once per frame
     void FixedUpdate() {
         Vector2 move = a["move"].ReadValue<Vector2>();
         rb.MovePosition(transform.position+(transform.right*move.x+transform.forward*move.y)*speed*Time.fixedDeltaTime);
-    }
+        treasuryIndicator.text = treasury.ToString("0");
+        }
 
     public float treasury;
 
