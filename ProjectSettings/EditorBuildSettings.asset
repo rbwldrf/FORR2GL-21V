@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototype 1.unity
     guid: 84729eeda748340d0955715b6a50b370
+  - enabled: 1
+    path: Assets/verk2/gameplay.unity
+    guid: d6ed11bf5c2f7aa42b78d7855091ce79
+  - enabled: 1
+    path: Assets/verk2/level00.unity
+    guid: 1b235a76d9219954989e5315921b0f18
+  - enabled: 1
+    path: Assets/verk2/level01.unity
+    guid: 9a5c2fca09ffe884382404d8e3a63d3e
   m_configObjects: {}

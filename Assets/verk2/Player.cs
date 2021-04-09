@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class Player : MonoBehaviour
     {
         a.Enable();
         rb = GetComponent<Rigidbody>();
+
+        SceneManager.LoadSceneAsync("level00", LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
@@ -31,6 +35,10 @@ public class Player : MonoBehaviour
         if (other.GetComponent<Coin>()) {
             Destroy(other.gameObject);
             ++treasury;
+        }
+        if (other.GetComponent<LevelChanger>()) {
+            other.GetComponent<LevelChanger>().ChangeLevel();
+            transform.position=Vector3.zero;
         }
     }
 }
