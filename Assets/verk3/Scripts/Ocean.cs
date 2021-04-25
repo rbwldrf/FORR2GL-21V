@@ -17,6 +17,7 @@ public class Ocean : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        // Draga stig frá leikmanni ef hann snertir hlut sem meiðir hann.
         if (other.GetComponent<V3_Player>()) { other.GetComponent<V3_Player>().hp--; other.GetComponent<V3_Player>().score-=10; }
     }
 }

@@ -50,19 +50,23 @@ public class V3_Player : MonoBehaviour
 
             //ef leikmaður er að miða, á að bæta animation ofan á vanalega animation
             a.SetLayerWeight(1,Mathf.Lerp(a.GetLayerWeight(1),(aiming?.9f:0),.33f));
-            //snúa model leikmanns í þá átt sem myndavélin snýr þegar hann miðar
             if (aiming) { 
-                
+                //snúa model leikmanns í þá átt sem myndavélin snýr þegar hann miðar
                 model.eulerAngles = Vector3.up * cam.transform.eulerAngles.y;
 
                 if (Input.GetButtonDown("Fire")&& charge >= 5) { charge -= 5;
+                    
+                    //bæta line renderer í heim og setja byrjunarpunkt á hendi leikmanns
                     RaycastHit hit; GameObject bolt = Instantiate(boltObject);
                     bolt.GetComponent<LineRenderer>().SetPosition(0,hand.position);
+
+                    //færa endapunkt þangað sem að skotið lendir og draga frá lífi óvina ef skot hittir
                     if(Physics.Linecast(cam.transform.position,cam.transform.position+cam.transform.forward*999999,out hit)){
                         bolt.GetComponent<LineRenderer>().SetPosition(1,hit.point);
                         if (hit.transform.GetComponent<Enemy>()) { hit.transform.GetComponent<Enemy>().hp-=Random.Range(37.5f,250); }
                     } else
                     {
+                        //setja endapunkt þangað sem skotið fer án þess að lenda nokkurs staðar
                         bolt.GetComponent<LineRenderer>().SetPosition(1,cam.transform.position+cam.transform.forward*999999);
                     }
 
