@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1419966666681234110}
   - component: {fileID: 5370937975037599915}
   - component: {fileID: 8549540078833383119}
+  - component: {fileID: 7717424103854826991}
   m_Layer: 0
   m_Name: generic-enemy
   m_TagString: Untagged
@@ -99,8 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  hp: 100
-  hpCap: 100
 --- !u!135 &6479966339498020947
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -112,7 +111,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.9
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1419966666681234110
 MonoBehaviour:
@@ -155,3 +154,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7717424103854826991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974890778803276790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeda61e74e60d4942b6a5117d74c2a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  hpCap: 100

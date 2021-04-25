@@ -10,6 +10,14 @@ public class Coin : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "player") {
+            other.GetComponent<V3_Player>().score+=2000;
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
