@@ -17,6 +17,6 @@ public class Ocean : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<V3_Player>()) { other.GetComponent<V3_Player>().hp--; }
+        if (other.GetComponent<V3_Player>()) { other.GetComponent<V3_Player>().hp--; other.GetComponent<V3_Player>().score-=10; }
     }
 }
