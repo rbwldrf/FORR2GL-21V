@@ -14,6 +14,9 @@ public class SceneResetter2 : MonoBehaviour
 
     IEnumerator waitForUnload()
     {
+        // afhlaða senum með þeim hætti að beðið er eftir því að hver einasta sena 
+        // sé afhlöðuð að sjálfri sér, svo að vélin hlaði ekki senum yfir aðrar senur
+
         AsyncOperation ao = SceneManager.UnloadSceneAsync("gameplay");
         yield return ao;
 

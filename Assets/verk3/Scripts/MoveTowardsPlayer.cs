@@ -14,6 +14,7 @@ public class MoveTowardsPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // færir sig að leikmanni horfir í átt leikmanns, og færir sig áfram eftir local snúning
         transform.LookAt(player); GetComponent<Rigidbody>().AddForce(transform.forward*.15f,ForceMode.VelocityChange);
     }
 }

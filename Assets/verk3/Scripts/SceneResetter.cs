@@ -13,6 +13,9 @@ public class SceneResetter : MonoBehaviour
     public GameObject sceneResetter2;
     public void ResetScene()
     { 
+        // færa þennan hlut yfir í nýja senu svo að hægt sé að 
+        // skapa hlut í senu sem er óháð vallar eða spil-senum
+ 
         transform.parent = null;
         SceneManager.LoadSceneAsync("empty",LoadSceneMode.Additive);
         SceneManager.MoveGameObjectToScene(gameObject, 
