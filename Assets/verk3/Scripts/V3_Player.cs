@@ -32,7 +32,7 @@ public class V3_Player : MonoBehaviour
 
     public Camera cam;
 
-    public Text scoreIndicator;
+    public Text scoreIndicator, chargeTextOuter, chargeTextInner;
 
     public GameObject gameOver, boltObject;
 
@@ -79,8 +79,14 @@ public class V3_Player : MonoBehaviour
             //uppfæra ui
             hpIndicator.fillAmount = Mathf.Lerp(hpIndicator.fillAmount, hp /hpCap,.33f); 
             chargeIndicator.fillAmount = Mathf.Lerp(chargeIndicator.fillAmount,charge/chargeCap,.33f);
+
+            chargeTextOuter.text = (charge/chargeCap*100).ToString("0.0"); chargeTextInner.text = chargeTextOuter.text;
         
-            ++score; charge = Mathf.Clamp(charge+.009f, 0, chargeCap);
+            ++score; 
+            
+            charge = Mathf.Clamp(charge+.011f, 0, chargeCap);
+            hp = Mathf.Clamp(hp+.002f,0,hpCap);
+
         }
         if (hp <= 0) { // ef leikmaður deyr
             Cursor.lockState = CursorLockMode.None;
