@@ -37,7 +37,7 @@ public class V3_Player : MonoBehaviour
     public GameObject gameOver, boltObject;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         scoreIndicator.text = score.ToString("0");
@@ -80,7 +80,7 @@ public class V3_Player : MonoBehaviour
             hpIndicator.fillAmount = Mathf.Lerp(hpIndicator.fillAmount, hp /hpCap,.33f); 
             chargeIndicator.fillAmount = Mathf.Lerp(chargeIndicator.fillAmount,charge/chargeCap,.33f);
         
-            ++score;    
+            ++score; charge = Mathf.Clamp(charge+.009f, 0, chargeCap);
         }
         if (hp <= 0) { // ef leikmaður deyr
             Cursor.lockState = CursorLockMode.None;
