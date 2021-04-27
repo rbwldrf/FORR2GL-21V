@@ -41,6 +41,9 @@ public class V3_Player : MonoBehaviour
 
     public GameObject gameOver, boltObject;
 
+    AudioSource death;
+    public AudioClip deathSound;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -98,6 +101,10 @@ public class V3_Player : MonoBehaviour
             GetComponent<ThirdPersonCharacter>().enabled = false;
             GetComponent<ThirdPersonUserControl>().enabled = false;
             Instantiate(gameOver,canvas); enabled = false;
+            if (death == null){
+                death = gameObject.AddComponent<AudioSource>();
+                death.clip = deathSound; death.Play();
+            }
         }    
     }
     private void OnGUI()

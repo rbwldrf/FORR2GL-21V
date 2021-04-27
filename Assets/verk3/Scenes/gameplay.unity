@@ -684,6 +684,7 @@ MonoBehaviour:
     type: 3}
   boltObject: {fileID: 4697972163885200755, guid: 7f71f73b4050af247b2af59ffc8ca82a,
     type: 3}
+  deathSound: {fileID: 8300000, guid: fc1e027422f00f749a5917d5edf25a5d, type: 3}
 --- !u!4 &513141703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 441846, guid: 7737647c22c1fc64a88d5cd030c352ce,
