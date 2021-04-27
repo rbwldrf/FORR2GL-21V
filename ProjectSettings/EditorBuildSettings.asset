@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/verk3/Scenes/init.unity
+    guid: 211126ecf1f0be84ba045de868fe56c8
+  - enabled: 1
     path: Assets/verk3/Scenes/gameplay.unity
     guid: fef91df2c054de044ab69a064d93bc9c
   - enabled: 1

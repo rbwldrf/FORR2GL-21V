@@ -10,8 +10,13 @@ public class V3_Player : MonoBehaviour
 {
     private void Start()
     {
-        if(!SceneManager.GetSceneByName("world").IsValid())SceneManager.LoadSceneAsync("world",LoadSceneMode.Additive);
+        if(SceneManager.GetSceneByName("init").isLoaded)
+        {   SceneManager.UnloadSceneAsync("init"); 
+            transform.position = Vector3.zero;    
+        }
     }
+
+
 
     // Start is called before the first frame update
     void Awake()
