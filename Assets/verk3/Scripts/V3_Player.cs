@@ -21,6 +21,11 @@ public class V3_Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        //til þess að það sé auðveldara fyrir
+        //Input að taka eftir stjórnbeiðnum,
+        //ásamt því að minnka álag á tölvuna
+        //með þeim hætti að læsa framerate-inu
+        Application.targetFrameRate = 48;
         a = GetComponent<Animator>();
     }
 
