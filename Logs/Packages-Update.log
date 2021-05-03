@@ -74,3 +74,14 @@ Update Mode: mergeDefaultDependencies
 
 The following packages were updated:
   com.unity.timeline from version 1.2.18 to 1.3.4
+
+=== Mon May  3 11:16:17 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.visualstudio from version 2.0.5 to 2.0.7
+  com.unity.render-pipelines.high-definition from version 10.2.2 to 10.4.0
+  com.unity.test-framework from version 1.1.22 to 1.1.24
+  com.unity.timeline from version 1.3.4 to 1.4.7
