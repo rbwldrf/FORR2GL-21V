@@ -61,7 +61,7 @@ public class RubyController : MonoBehaviour
             Launch();
         }
 
-        hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, (float)currentHealth / (float)maxHealth,.15f);
+        hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, (float)currentHealth / (float)maxHealth,.02f);
     }
 
     void FixedUpdate()
@@ -69,11 +69,14 @@ public class RubyController : MonoBehaviour
         Vector2 position = transform.position;
         position += speed * move * Time.deltaTime;
         rb.MovePosition(position);
+        GetComponent<SpriteRenderer>().enabled = isInvincible ? 
+            !GetComponent<SpriteRenderer>().enabled : true;
     }
 
     public void Launch()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, rb.position + Vector2.up * 0.5f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, 
+            rb.position + Vector2.up * 0.5f, Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
