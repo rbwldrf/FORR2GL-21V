@@ -12,7 +12,11 @@ public class EnemyController : MonoBehaviour
     float timer;
     int direction = 1;
 
+    public GameObject smoke;
+
     Animator animator;
+
+    public bool broken = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +26,21 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public void Fix()
+    {
+        broken = false;
+        rigidbody2D.simulated = false;
+        smoke.GetComponent<ParticleSystem>().Stop(false,ParticleSystemStopBehavior.StopEmitting);
+    }
+
     void Update()
     {
+
+        if (!broken)
+        {
+            return;
+        }
+
         timer -= Time.deltaTime;
 
         if (timer < 0)
@@ -49,6 +66,9 @@ public class EnemyController : MonoBehaviour
             animator.SetFloat("Move X", direction);
             animator.SetFloat("Move Y", 0);
         }
+
+        animator.SetFloat("Moving", broken ? 1 : 0);
+
 
         rigidbody2D.MovePosition(position);
     }
