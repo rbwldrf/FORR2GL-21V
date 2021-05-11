@@ -289,8 +289,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 170
+  m_SortingLayerID: 182319653
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &249778403
 GameObject:
@@ -65620,7 +65620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.8}
+  m_AnchoredPosition: {x: 0, y: 190.72}
   m_SizeDelta: {x: 540, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2087553703
@@ -65635,6 +65635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a2b1158f831594d86d549952b2a0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeMult: 0
 --- !u!114 &2087553704
 MonoBehaviour:
   m_ObjectHideFlags: 0
