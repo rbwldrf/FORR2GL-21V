@@ -19,10 +19,10 @@ public class DialogueBoxScaler : MonoBehaviour
 
         string text = dialogue.text;
         int count  = text.Replace(" ",string.Empty).Length;
-        float lines = Mathf.Clamp((float)Mathf.FloorToInt(dialogue.preferredWidth / (540 + dialogue.margin.x + dialogue.margin.z)), 0, 999);
+        float lines = Mathf.Clamp((float)Mathf.FloorToInt((dialogue.preferredWidth) / (540+ dialogue.margin.y + dialogue.margin.w)), 0, 999);
 
         GetComponent<RectTransform>().sizeDelta = new Vector2(
-            Mathf.Clamp(dialogue.preferredWidth,64,540f),
+            Mathf.Clamp(dialogue.preferredWidth, dialogue.margin.y + dialogue.margin.w ,540f + dialogue.margin.y + dialogue.margin.w),
             (dialogue.fontSize*1.5f+dialogue.margin.y+dialogue.margin.w)
             +(dialogue.fontSize*1.5f+dialogue.lineSpacing*dialogue.fontSize*.01f)*lines
             );
