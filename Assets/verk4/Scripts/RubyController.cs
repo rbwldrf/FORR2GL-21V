@@ -35,9 +35,14 @@ public class RubyController : MonoBehaviour
 		currentHealth = maxHealth;
 	}
 
-	bool hasTalkedToJambi = false,hasTalkedToJambiPostFix=false; public GameObject dbw; 
-	int botsBroken; public GameObject botCarrier;
+	bool hasTalkedToJambi=false,
+		hasTalkedToJambiPostFix=false,
+		missionComplete=false; 
+	
+	public GameObject dbw; int botsBroken; public GameObject botCarrier;
 	public Canvas worldCanvas;
+
+	public GameObject cogAudio,missionCompleteAudio,hurtSound;
 
 	// Update is called once per frame
 	void Update()
@@ -50,7 +55,11 @@ public class RubyController : MonoBehaviour
 		EnemyController[] bots = botCarrier.GetComponentsInChildren<EnemyController>();
 		foreach(EnemyController bot in bots){if(bot.broken)++botsBroken;}
 
+		if(botsBroken == 0 && !missionComplete) { Instantiate(missionCompleteAudio); missionComplete=true; }
+
 		move = new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
+
+		GetComponent<AudioSource>().enabled = !Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f);
 
 		if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
 		{
@@ -144,6 +153,8 @@ public class RubyController : MonoBehaviour
 		Projectile projectile = projectileObject.GetComponent<Projectile>();
 		projectile.Launch(lookDirection, 300);
 
+		Instantiate(cogAudio);
+
 		//anim.SetTrigger("Launch");
 
 		--gears;
@@ -157,6 +168,7 @@ public class RubyController : MonoBehaviour
 			if (isInvincible)
 				return;
 
+			Instantiate(hurtSound);
 			isInvincible = true;
 			invincibleTimer = timeInvincible;
 		}

@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
+// ÞESSI KÓÐI ER EKKI NOTAÐUR
+
+// texti talmanns sýndur í HUD í stað þess að birtast í heiminum 
+
+
 public class DialogueBox : MonoBehaviour
 {
     // Start is called before the first frame update

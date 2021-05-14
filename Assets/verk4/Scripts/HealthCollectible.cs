@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthCollectible : MonoBehaviour
 {
+    public GameObject pickupSound;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Object that entered the trigger : " + other);
@@ -13,6 +15,7 @@ public class HealthCollectible : MonoBehaviour
         {
             if (controller.health < controller.maxHealth)
             {
+                Instantiate(pickupSound);
                 controller.ChangeHealth(1);
                 Destroy(gameObject);
             }

@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
 
     Animator animator;
 
+    public GameObject fixSound;
+
     public bool broken = true;
 
     // Start is called before the first frame update
@@ -28,6 +30,8 @@ public class EnemyController : MonoBehaviour
 
     public void Fix()
     {
+
+        Instantiate(fixSound);
         broken = false;
         rigidbody2D.simulated = false;
         smoke.GetComponent<ParticleSystem>().Stop(false,ParticleSystemStopBehavior.StopEmitting);
@@ -52,6 +56,8 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        transform.GetChild(1).gameObject.GetComponent<AudioSource>().enabled=broken;
+
         Vector2 position = rigidbody2D.position;
 
         if (vertical)
