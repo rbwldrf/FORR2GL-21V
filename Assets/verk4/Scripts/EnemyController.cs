@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.GetChild(1).gameObject.GetComponent<AudioSource>().enabled=broken;
+        transform.GetChild(1).GetComponent<AudioSource>().enabled=broken;
 
         Vector2 position = rigidbody2D.position;
 

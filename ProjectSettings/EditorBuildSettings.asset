@@ -6,24 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/verk3/Scenes/init.unity
-    guid: 211126ecf1f0be84ba045de868fe56c8
+    path: Assets/verk4/ruby.unity
+    guid: d23fabc6115b2e04389d8bdac91aff5e
   - enabled: 1
-    path: Assets/verk3/Scenes/gameplay.unity
-    guid: fef91df2c054de044ab69a064d93bc9c
-  - enabled: 1
-    path: Assets/verk3/Scenes/levels/world.unity
-    guid: f33883a8e9454d943b678134007c81b8
-  - enabled: 1
-    path: Assets/verk1/Scenes/Prototype 1.unity
-    guid: 84729eeda748340d0955715b6a50b370
-  - enabled: 1
-    path: Assets/verk2/level00.unity
-    guid: 1b235a76d9219954989e5315921b0f18
-  - enabled: 1
-    path: Assets/verk2/level01.unity
-    guid: 9a5c2fca09ffe884382404d8e3a63d3e
-  - enabled: 1
-    path: Assets/empty.unity
-    guid: d5e37f710d356dc498589068c83352da
+    path: Assets/verk4/ruby_gameover.unity
+    guid: df39a421ffb40034ba71aace9933ad71
   m_configObjects: {}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -174,6 +175,8 @@ public class RubyController : MonoBehaviour
 		}
 
 		currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+		if (currentHealth == 0) { SceneManager.LoadSceneAsync("ruby_gameover"); }
+		
 		Debug.Log(currentHealth + "/" + maxHealth);
 	}
 }
