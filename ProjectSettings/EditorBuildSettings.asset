@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/verk4/ruby_gameover.unity
     guid: df39a421ffb40034ba71aace9933ad71
+  - enabled: 1
+    path: Assets/verk5/Main.unity
+    guid: 548efbe8196c7bb41a94d25d70cf82e6
   m_configObjects: {}

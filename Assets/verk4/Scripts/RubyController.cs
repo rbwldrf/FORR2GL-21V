@@ -106,6 +106,7 @@ public class RubyController : MonoBehaviour
 			//ef svo er skal halda áfram
 			if (hit.collider != null)
 			{
+
 				//ef engin textabox eru fundin í heimi
 				if (worldCanvas.GetComponentsInChildren<DialogueBoxWorld>().Length == 0)
 				{

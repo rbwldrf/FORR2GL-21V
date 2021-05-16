@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Projectile : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Projectile : MonoBehaviour
         EnemyController e = other.collider.GetComponent<EnemyController>();
         //ef svo er, er það vélmenni lagað.
         if (e != null) e.Fix();
+
+        if (other.collider.GetComponent<Arcade>()) { SceneManager.LoadSceneAsync("Main"); }
 
         Destroy(gameObject);
     }
