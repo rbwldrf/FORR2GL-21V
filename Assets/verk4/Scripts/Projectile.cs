@@ -14,16 +14,16 @@ public class Projectile : MonoBehaviour
 
     public void Launch(Vector2 direction, float force)
     {
+        //færa skot áfram
         rigidbody2d.AddForce(direction * force);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        //sjá hvort skot hefur snert vélmenni
         EnemyController e = other.collider.GetComponent<EnemyController>();
-        if (e != null)
-        {
-            e.Fix();
-        }
+        //ef svo er, er það vélmenni lagað.
+        if (e != null) e.Fix();
 
         Destroy(gameObject);
     }
@@ -31,6 +31,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //eyða hlut ef hann hefur farið of langt
         if (transform.position.magnitude > 1000.0f)
         {
             Destroy(gameObject);

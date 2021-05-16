@@ -13,6 +13,7 @@ public class AudioDestroyer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //sjá um að eyða hlut ef það hljóð sem tengt er hlutnum er hætt að spila  
         if(!GetComponent<AudioSource>().isPlaying) Destroy(gameObject);
     }
 }

@@ -4,88 +4,100 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed;
-    public bool vertical;
-    public float changeTime = 3.0f;
+	public float speed;
+	public bool vertical;
+	public float changeTime = 3.0f;
 
-    Rigidbody2D rigidbody2D;
-    float timer;
-    int direction = 1;
+	Rigidbody2D rigidbody2D;
+	float timer;
+	int direction = 1;
 
-    public GameObject smoke;
+	public GameObject smoke;
 
-    Animator animator;
+	Animator animator;
 
-    public GameObject fixSound;
+	public GameObject fixSound;
 
-    public bool broken = true;
+	public bool broken = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        timer = changeTime;
-        animator = GetComponent<Animator>();
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		rigidbody2D = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
+		
+		timer = changeTime;
+	}
 
-    public void Fix()
-    {
+	public void Fix()
+	{
+		//spila hljóð sem á að heyrast þegar vélmenni er lagað
+		Instantiate(fixSound);
+		//vélmenni er lagað, breyta bool-inu sem 
+		//gefur til kynna hvort vélmenni er bilað
+		broken = false;
+		//kyrrsetja vélmenni
+		rigidbody2D.simulated = false;
+		//hætta að spila particle effect þegar vélmenni er lagað
+		smoke.GetComponent<ParticleSystem>().Stop(false,ParticleSystemStopBehavior.StopEmitting);
+	}
 
-        Instantiate(fixSound);
-        broken = false;
-        rigidbody2D.simulated = false;
-        smoke.GetComponent<ParticleSystem>().Stop(false,ParticleSystemStopBehavior.StopEmitting);
-    }
+	void Update()
+	{
+		//ekki færa vélmenni sem er lagað
+		if (!broken) return;
+		
+		//minnka gefinn tíma um það tímabil sem hefur liðið milli ramma
+		timer -= Time.deltaTime;
 
-    void Update()
-    {
+		//ef vélmenni hefur gengið nógu lengi í ákveðna átt
+		if (timer < 0)
+		{
+			//snúa við og byrja tíma upp á nýtt
+			direction = -direction;
+			timer = changeTime;
+		}
+	}
 
-        if (!broken)
-        {
-            return;
-        }
+	void FixedUpdate()
+	{
+		//spila hljóð sem á að spilast ef vélmenni er bilað
+		transform.GetChild(1).GetComponent<AudioSource>().enabled=broken;
 
-        timer -= Time.deltaTime;
+		//finna staðsetningu í heimi
+		Vector2 position = rigidbody2D.position;
 
-        if (timer < 0)
-        {
-            direction = -direction;
-            timer = changeTime;
-        }
-    }
+		//færa vélmenni í tilgefna átt og breyta í við-
+		//eigandi animation fyrir tilgefna átt.
 
-    void FixedUpdate()
-    {
-        transform.GetChild(1).GetComponent<AudioSource>().enabled=broken;
+		if (vertical)
+		{
+			position.y = position.y + Time.deltaTime * speed * direction;
+			animator.SetFloat("Move X", 0);
+			animator.SetFloat("Move Y", direction);
+		}
+		else
+		{
+			position.x = position.x + Time.deltaTime * speed * direction;
+			animator.SetFloat("Move X", direction);
+			animator.SetFloat("Move Y", 0);
+		}
 
-        Vector2 position = rigidbody2D.position;
+		//breyta animation eftir því hvort vélmenni sé bilað eða ekki
+		animator.SetFloat("Moving", broken ? 1 : 0);
 
-        if (vertical)
-        {
-            position.y = position.y + Time.deltaTime * speed * direction;
-            animator.SetFloat("Move X", 0);
-            animator.SetFloat("Move Y", direction);
-        }
-        else
-        {
-            position.x = position.x + Time.deltaTime * speed * direction;
-            animator.SetFloat("Move X", direction);
-            animator.SetFloat("Move Y", 0);
-        }
+		//hreyfa vélmenni
+		rigidbody2D.MovePosition(position);
+	}
 
-        animator.SetFloat("Moving", broken ? 1 : 0);
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		//sjá hvort leikmaður hefur snert vélmenni
+		RubyController player = other.gameObject.GetComponent<RubyController>();
 
-
-        rigidbody2D.MovePosition(position);
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        RubyController player = other.gameObject.GetComponent<RubyController>();
-
-        if (player != null)
-        {
-            player.ChangeHealth(-1);
-        }
-    }
+		//ef svo er, er dregið frá lífi leikmanns.
+		if (player != null) {
+			player.ChangeHealth(-1);
+		}
+	}
 }

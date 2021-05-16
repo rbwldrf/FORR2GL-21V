@@ -19,16 +19,14 @@ public class DialogueBoxScaler : MonoBehaviour
 
         string text = dialogue.text;
         int count  = text.Replace(" ",string.Empty).Length;
-        
-        float marginX = dialogue.margin.y + dialogue.margin.w;
-        float marginY = dialogue.margin.x + dialogue.margin.z;
 
         // finna fjölda lína sem texti þarf að vera til þess að passa í ákveðna stærð textarammans
-        float lines = Mathf.Clamp( (float)Mathf.FloorToInt((dialogue.preferredWidth) / (540+ marginX)), 0, 999); 
+        float lines = Mathf.Clamp( (float)Mathf.FloorToInt((dialogue.preferredWidth) / (540)), 0, 999); 
 
+        // uppfæra stærð eftir lengd texta og fjölda lína sem sá texti á að vera
         GetComponent<RectTransform>().sizeDelta = new Vector2(
-            Mathf.Clamp(dialogue.preferredWidth, marginX ,540f + marginX),
-            marginY*2f+(dialogue.fontSize*1.33f)*lines
+            Mathf.Clamp(dialogue.preferredWidth+24, 24f ,540f + 24f),
+            24f+(24f)*(lines+1)
             );
     }
 }

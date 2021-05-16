@@ -13,6 +13,7 @@ public class RetryButton : MonoBehaviour
 
     public void Restart()
     {
+        //skipta um senu ef ýtt er á takka
         SceneManager.LoadSceneAsync("ruby");
     }
 
